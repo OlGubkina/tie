@@ -39,44 +39,35 @@ public class TieMainClass {
 
         //Page 3 - Click Next
         try {
-            Thread.sleep(12000);
+            Thread.sleep(5000);
             boolean b = driver.findElement(By.id("btnEntrar")).isDisplayed();
             System.out.println(b);
-            driver.findElement(By.id("btnEntrar")).click(); // <- error
-
+            b = driver.findElement(By.id("btnEntrar")).isEnabled();
+            System.out.println(b);
+            driver.findElement(By.id("btnEntrar")).sendKeys("eee");
+            System.out.println(b);
+            driver.findElement(By.id("btnEntrar")).click();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println("Page 3 - ok");
 
-        /**
         //Page 4 - Заполнить данные
-        System.out.println("Page 4 - start");
-        driver.findElement(By.xpath("//*[@id=\'txtIdCitado\']")).sendKeys("1");
-        driver.findElement(By.xpath("//*[@id=\'txtDesCitado\']")).sendKeys("2");
-        By nieLocator = By.xpath("");
-        By nameLocator = By.xpath("//*[@id=\'txtDesCitado\']");
-        WebElement nie = driver.findElement(nieLocator);
-        nie.sendKeys("Y9610134N");
-        WebElement name = driver.findElement(nameLocator);
-        nie.sendKeys("Olga Gubkina");
+        //Olga
+        driver.findElement(By.id("txtIdCitado")).sendKeys("Y9610134N");
+        driver.findElement(By.id("txtDesCitado")).sendKeys("Olga Gubkina");
+        driver.findElement(By.xpath("//*[@id='btnEnviar']")).click();
 
+        //Mari
+        driver.findElement(By.id("txtIdCitado")).sendKeys("Y9610170W");
+        driver.findElement(By.id("txtDesCitado")).sendKeys("Mariia Borisova");
+        driver.findElement(By.xpath("//*[@id='btnEnviar']")).click();
 
-
-        //By btnEnviarLocator = By.xpath("//*[@id='btnEnviar']");
-*/
-
-
-
-        /**
-        WebElement plCard = driver.findElement(plasticCardLocator); //выбрать дропдаун
-        plCard.click();
-        plCard.findElement(plCardOption).click(); //выбрать нужный пункт в дропдаун <-stop
-
-
-
-*/
+        try {
+            Thread.sleep(2000);
+            driver.findElement(By.id("btnEnviar")).click();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
     }
-
 }
