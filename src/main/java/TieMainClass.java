@@ -3,11 +3,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-
-import java.time.Duration;
-import java.util.concurrent.TimeUnit;
 
 public class TieMainClass {
     public static void main(String[] args) {
@@ -20,7 +15,9 @@ public class TieMainClass {
 
         By oficinaDropDownLocator = By.xpath("//select[@id='sede']/optgroup/option[3]");
         //By plasticCardLocator = By.xpath("//select[@id='tramiteGrupo[0]']/option[3]"); //?
-        By plasticCardLocator = By.xpath("/html/body/div[1]/div[2]/main/div/div/section/div[2]/form[1]/div[3]/div[1]/div[2]/div/div/fieldset/div[1]/select/option[3]");
+        //By plasticCardLocator = By.xpath("/html/body/div[1]/div[2]/main/div/div/section/div[2]/form[1]/div[3]/div[1]/div[2]/div/div/fieldset/div[1]/select/option[3]");
+        By plasticCardLocator = By.cssSelector("select.mf-input__l");
+        By plCardOption = By.cssSelector("option[value='4094']");
 
         //не проверено
         By nextButtonLocator = By.xpath("/html/body/div[1]/div[2]/main/div/div/section/div[2]/form/div/div[2]/input[1]");
@@ -28,13 +25,14 @@ public class TieMainClass {
         By nieLocator = By.xpath("//*[@id=\'txtIdCitado\']");
         By nameLocator = By.xpath("//*[@id=\'txtDesCitado\']");
 
-
-        //page 1 - choose Alicante
+        //page 1 - choose Alicante -ok
         driver.findElement(dropDownCityLocator).click();
         driver.findElement(buttonAceptar).click();
         //page 2 - choose Office + TIE
         driver.findElement(oficinaDropDownLocator).click();
-        driver.findElement(plasticCardLocator).click(); //? locator doesnt work!
+        WebElement plCard = driver.findElement(plasticCardLocator); //выбрать дропдаун
+        plCard.click();
+        plCard.findElement(plCardOption).click(); //выбрать нужный пункт в дропдаун <-stop
         driver.findElement(buttonAceptar).click();
         //Page 3 - Click Next
         driver.findElement(nextButtonLocator).click();
